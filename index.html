@@ -9,6 +9,9 @@
     .name {
       color: #ffffff;
     }
+    li {
+      font-weight: bold;
+    }
 
     li.recipe {
       background: #336598;
@@ -22,6 +25,7 @@
 
     ul.ingredients {
       list-style-type: none;
+      color:#336598;
     }
 
     .calories,
@@ -31,9 +35,21 @@
 
     .show {
       display: block;
-      position: relative;
-      left: 191px;
+      position: absolute;
+      top: 0;
+      width: 232px;
+      padding: 13px;
+      left: 214px;
+      margin: 0px;
+      line-height: 1.5em;
+      box-shadow: inset 0 0 10px #000000;
     }
+
+    .amount {
+    padding-right: 5px;
+    font-weight: normal;
+    }
+    
   </style>
   <script>
     document.addEventListener("DOMContentLoaded", (event) => {
@@ -51,7 +67,14 @@
       const showIngredients = document.querySelectorAll('.ingredients.li');
 
       // The blue area is used to toggle the showing and hiding of the ingredients list
-      const blueArea = document.querySelectorAll('li.recipe');
+      const blueArea = document.querySelector('.recipe');
+      // const ingredients = blueArea.getElementsByTagName('ul');
+      blueArea.addEventListener('click', toggle);
+      function toggle() {
+        // element.classList.contains('classname');
+        const ingredients = blueArea.getElementsByTagName('ul');
+          ingredients[0].classList.add('show');
+      }
 
 
       function openIngredientsList() {
@@ -63,24 +86,30 @@
 
 
       function buildRecipeNameURL() {
-        debugger;
         /*
         * sample url
         * https://www.yummly.com/recipe/Grilled-Shrimp-Tacos-1102925
         */
         const recipeTitle = recipeName.forEach((text) => {
+          // console.log('recipeTitle', recipeName)
           let title = text.innerText.split(' ').join('-')
-          console.log(title);
-          const recipeID = document.querySelectorAll('.recipe');
+          // console.log(title);
+          const recipeID = document.querySelectorAll('[data-id]');
+          console.log(recipeID);
+          // const ID = recipeID.dataset.id;
+          // console.log(ID);
+          // const URL = `//yummly.com/recipe/${title}-${ID}`
+          // console.log(URL);
           const ID = recipeID.forEach((item) => {
             let dataID = item.dataset.id;
 
             let URL = `//yummly.com/recipe/${title}-${dataID}`
-            window.open(URL);
+            // window.open(URL);
           })
 
         });
       }
+      
 
       function searchByIngredients(e) {
         console.log('searching...')
@@ -101,9 +130,10 @@
       document.getElementById("div1").classList.remove("classToBeRemoved");
       */
       // add event listeners
-      blueArea.forEach((element) => {
-        element.addEventListener('click', buildRecipeNameURL);
-      });
+      // blueArea.forEach((element) => {
+      //   element.addEventListener('click', buildRecipeNameURL);
+      // });
+
       // recipeName.forEach((element) => {
       // element.addEventListener('click', buildRecipeNameURL)
       // element.addEventListener('click', recipeID)
