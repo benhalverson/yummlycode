@@ -55,7 +55,7 @@
     document.addEventListener("DOMContentLoaded", (event) => {
       // caching classes into constants.
       // gets the recipe name
-      const recipeName = document.querySelectorAll('span.name');
+      const recipeName = document.querySelectorAll('.name');
       
       // gets the recipe data-id
       // recipe name and id are needed for building the url
@@ -65,7 +65,8 @@
 
       // gets the ingredients list
       const showIngredients = document.querySelectorAll('.ingredients.li');
-
+      // const showIngredients = document.querySelectorAll('.recipe').getElementsByClassName('ingredients');
+      console.log(showIngredients);
       // The blue area is used to toggle the showing and hiding of the ingredients list
       const blueArea = document.querySelector('.recipe');
       // const ingredients = blueArea.getElementsByTagName('ul');
@@ -74,23 +75,28 @@
       * toggle will either show or hide the ingredientsList of each bluebox.
       */
       function toggle() {
-        
         const ingredientsList = blueArea.getElementsByTagName('ul');
-        console.log('ingredients', ingredientsList[0]);
         if (!ingredientsList[0].classList.contains('show')) {
           ingredientsList[0].classList.add('show');
-
         } else {
           ingredientsList[0].classList.remove('show');
         }
       }
       ingredients = blueArea.getElementsByClassName('li');
-
+      
+      
 
       function openIngredientsList() {
         // find all the ingredients and loop over them
         // show the list of ingredients and position to the right of the blue div
+
+      const list = document.querySelector('.recipe').getElementsByClassName('ingredients');
       
+      
+      let arr = Array.from(list);
+      arr.map((item) => {
+        return console.log('item', item.children.length);
+      });
       toggle();
 
       // buildRecipeNameURL();
@@ -156,6 +162,10 @@
       // });
       showIngredients.forEach((element) => {
         element.addEventListener('click', searchByIngredients);
+      });
+
+      document.addEventListener('click', () => {
+        console.log('hello');
       });
 
 
