@@ -1,14 +1,21 @@
 <!doctype html>
 <html>
+
 <head>
   <style>
     body {
       font-family: Raleway, Roboto, Helvetica Neue, Segoe UI, sans-serif
     }
 
+    .sort {
+      background: #cccccc;
+      background: linear-gradient(to bottom, #cccccc 0%, #eeeeee 100%);
+    }
+
     .name {
       color: #ffffff;
     }
+
     li {
       font-weight: bold;
     }
@@ -25,7 +32,7 @@
 
     ul.ingredients {
       list-style-type: none;
-      color:#336598;
+      color: #336598;
     }
 
     .calories,
@@ -46,17 +53,16 @@
     }
 
     .amount {
-    padding-right: 5px;
-    font-weight: normal;
+      padding-right: 5px;
+      font-weight: normal;
     }
-    
   </style>
   <script>
     document.addEventListener("DOMContentLoaded", (event) => {
       // caching classes into constants.
       // gets the recipe name
       const recipeName = document.querySelectorAll('.name');
-      
+
       // gets the recipe data-id
       // recipe name and id are needed for building the url
 
@@ -83,23 +89,25 @@
         }
       }
       ingredients = blueArea.getElementsByClassName('li');
-      
-      
+
+
 
       function openIngredientsList() {
         // find all the ingredients and loop over them
         // show the list of ingredients and position to the right of the blue div
 
-      const list = document.querySelector('.recipe').getElementsByClassName('ingredients');
-      
-      
-      let arr = Array.from(list);
-      arr.map((item) => {
-        return console.log('item', item.children.length);
-      });
-      toggle();
+        const list = document.querySelector('.recipe').getElementsByClassName('ingredients');
 
-      // buildRecipeNameURL();
+
+        // let arr = Array.from(list);
+        // arr.map((item) => {
+        //   return item.innerText.trim().split(' ');
+        // }).map((item) => {
+        //   console.log(item);
+        // })
+        toggle();
+
+        // buildRecipeNameURL();
       }
 
 
@@ -126,19 +134,22 @@
 
         });
       }
-      
+
 
       function searchByIngredients(e) {
         console.log('searching...')
+        // example from mdn
+        // const uri = "my test.asp?name=ståle&car=saab";
+        // const res = encodeURI(uri);
         /*
         * sample url 
         * https://www.yummly.com/recipes?allowedIngredient=ghee
         */
         const recipeID = document.querySelectorAll('[data-id]');
-            recipeID.forEach((el) => {
-            console.log('element', el.dataset.id);
-    
-          })
+        recipeID.forEach((el) => {
+          console.log('element', el.dataset.id);
+
+        })
 
 
       }
@@ -165,7 +176,7 @@
       });
 
       document.addEventListener('click', () => {
-        console.log('hello');
+
       });
 
 
@@ -175,6 +186,7 @@
 <!-- only modify content inside the STYLE and SCRIPT elements above this line -->
 
 <!-- please DO NOT modify anything below this line -->
+
 <body>
   <button class="sort" data-order="random">Randomize</button>
   <button class="sort" data-order="name">Sort by Name</button>
