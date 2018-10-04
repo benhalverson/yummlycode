@@ -70,9 +70,9 @@
       const ID = recipeID //.getAttribute('data-id');
 
       // gets the ingredients list
-      const showIngredients = document.querySelectorAll('.ingredients.li');
-      // const showIngredients = document.querySelectorAll('.recipe').getElementsByClassName('ingredients');
-      console.log(showIngredients);
+      const showIngredients = document.querySelectorAll('.ingredients.show');
+      // class names ingredients show
+      console.log('showIngredients', showIngredients);
       // The blue area is used to toggle the showing and hiding of the ingredients list
       const blueArea = document.querySelector('.recipe');
       // const ingredients = blueArea.getElementsByTagName('ul');
@@ -120,7 +120,6 @@
 
           let title = text.innerText.split(' ').join('-')
 
-          console.log('arr', arr);
           // const ID = recipeID.dataset.id;
           // console.log(ID);
           // const URL = `//yummly.com/recipe/${title}-${ID}`
@@ -129,7 +128,7 @@
             let dataID = item.dataset.id;
 
             let URL = `//yummly.com/recipe/${title}-${dataID}`
-            // window.open(URL);
+            window.open(URL);
           })
 
         });
@@ -149,7 +148,7 @@
         recipeID.forEach((el) => {
           console.log('element', el.dataset.id);
 
-        })
+        });
 
 
       }
@@ -175,9 +174,7 @@
         element.addEventListener('click', searchByIngredients);
       });
 
-      document.addEventListener('click', () => {
-
-      });
+      document.addEventListener('click', buildRecipeNameURL);
 
 
     }); 
